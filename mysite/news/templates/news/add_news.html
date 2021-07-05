@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block title %}
+{{ news_item.title }}
+{% endblock %}
+
+{% block sidebar %}
+{% include 'base/sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+<form action="{% url 'add_news' %}" method="post">
+    {% csrf_token %}
+
+    <!-- Вриант 1 -->
+    {% comment %}
+    {{ form.as_p }}
+    {% endcomment %}
+
+    <!-- Вриант 2 -->
+    {% comment %}
+    <div class="form-group">
+        <!-- form обрашение к форме и его передаём в шаблон -->
+        <label for="{{ form.title.id_form_label }}">Название: </label>
+        {{ form.title }}
+        <div class="invalid-feedback">
+            {{ form.title.errors }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.content.id_form_label }}">Контент: </label>
+        {{ form.content }}
+        <div class="invalid-feedback">
+            {{ form.content.errors }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.category.id_form_label }}">Категория: </label>
+        {{ form.category }}
+        <div class="invalid-feedback">
+            {{ form.category.errors }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.is_published.id_form_label }}">Опубликовано: </label>
+        {{ form.is_published }}
+        <div class="invalid-feedback">
+            {{ form.is_published.errors }}
+        </div>
+    </div>
+    {% endcomment %}
+
+    <!-- Вриант 3 -->
+    {% for item_form in form %}    <!-- form обрашение к форме -->
+    <div class="form-group">
+        {{ item_form.label_tag }}
+        {{ item_form }}
+        <div class="invalid-feedback">
+            {{ item_form.errors }}
+        </div>
+    </div>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-primary">Добавить</button>
+</form>
+{% endblock %}

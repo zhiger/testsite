@@ -1,0 +1,16 @@
+{% load news_tags %}
+
+<!-- реализация через тег simple_tag -->
+<!--
+<div class="list-group">
+    <div class="list-group-item bg-info text-light ">КАТЕГОРИЯ</div>
+    {% get_categories as categories %}
+    {% for item_category in categories %}
+    <a href="{{ item_category.get_absolute_url}}" class="list-group-item list-group-item-action"> {{ item_category.title }} </a>
+    {% endfor %}
+</div>
+-->
+
+<!-- реализация через тег inclusion_tag -->
+
+{% show_catgories %}

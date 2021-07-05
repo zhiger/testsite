@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block sidebar %}
+{% include 'base/sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+<div>
+    <h1>This is news_list</h1>
+    {% for item in object_list %}
+    <div class="card mb-3">
+        <div class="card-header">
+            Категория: <a href="{{ item.category.get_absolute_url }}">{{ item.category }}</a>
+        </div>
+        <div>
+            <div class="d-flex p-2">
+                <div class="d-inline-block p-2">
+                    {% if item.photo %}
+                    <img src="{{ item.photo.url }}" alt="" width="180" height="250" class="rounded-3">
+                    {% else %}
+                    <img src="https://picsum.photos/seed/picsum/200/250" alt="...">
+                    {% endif %}
+                </div>
+                <div class="d-inline-block p-2">
+                    <h5 class="card-title">{{ item.title }}</h5>
+                    <p class="card-text ">{{ item.content|truncatewords:50 }}</p>
+                    <a href="{{ item.get_absolute_url }}" class="btn btn-primary">Смотреть</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-muted">{{ item.created_te|date:"d F Y" }}</div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

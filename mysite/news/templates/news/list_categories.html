@@ -1,0 +1,8 @@
+<div class="list-group">
+    <div class="list-group-item bg-info text-light ">КАТЕГОРИЯ</div>
+    {% for item_category in categories %}
+    <a href="{{ item_category.get_absolute_url}}" class="list-group-item list-group-item-action"> {{ item_category.title }}
+        <span class="badge badge-primary pl-2 pr-2 float-right mt-1">{{ item_category.badge}}</span>
+    </a>
+    {% endfor %}
+</div>

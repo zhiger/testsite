@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-info ">
+
+    <a class="navbar-brand text-light" href="{% url 'home' %}">MOVIES</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mr-2 ">
+            <li class="nav-item">
+                <a class="nav-link text-light" href="{% url 'home' %}">Главная</a>
+            </li>
+            <!--Проверяем авторизовано ли пользователь, если да то выводим кнопку "Добавит"-->
+            {% if request.user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link text-light" href="{% url 'add_news'%}">Добавить</a>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+                <a class="nav-link text-light" href="{% url 'contact' %}">Контакты</a>
+            </li>
+        </ul>
+        <span class=" left-text navbar-text text-light ">
+            {% if request.user.is_authenticated %}
+            <span>Добро пожаловать {{ user.username }} | <a class="text-light" href="{% url 'logout'%}">Выход</a></span>
+            {% else %}
+            <a class="text-light" href="{% url 'register' %}">Регистрация</a> |
+            <a class="text-light" href="{% url 'login' %}">Логин</a>
+            {% endif %}
+        </span>
+    </div>
+    <!-- MIXIN
+    <div class="nav-item float-right">
+        <a class="nav-link text-light" href="#">{{ mixin_prop }}</a>
+    </div>-->
+</nav>
+
+
+<!-- 'home' и 'add-news'имя шаблона в urls.py а url встроенный тег шаблона-->

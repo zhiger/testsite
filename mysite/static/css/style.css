@@ -1,0 +1,7 @@
+.list-group >.badge-pill>.badge-primary {
+    margin-top: 5px;
+}
+.navbar>.collapse>.left-text {
+    display: block;
+    float: right;
+}
